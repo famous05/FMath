@@ -68,7 +68,7 @@ class Vector3D
 
         const double& operator [](int i) const;
    
-        void SetXYZ(double x, double y, double z);
+        void SetComponents(double x, double y, double z);
 
         virtual void Print();
 

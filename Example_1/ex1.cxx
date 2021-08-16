@@ -36,7 +36,7 @@ int main()
 
     v7->Print();
 
-    v7->SetXYZ(0, 3, 4);
+    v7->SetComponents(0, 3, 4);
 
     *v7 *= 10;
     v7->Print();

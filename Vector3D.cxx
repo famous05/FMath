@@ -172,7 +172,7 @@ const double& Vector3D::operator [](int i) const
     }
 }
 
-void Vector3D::SetXYZ(double x, double y, double z)
+void Vector3D::SetComponents(double x, double y, double z)
 {
     this->x = x;
     this->y = y;
