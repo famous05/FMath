@@ -1,8 +1,9 @@
 
 /**
-FMath Library
+    FMath Library
 
-Copyright (c) 2020 - 2021, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+    Copyright (c) 2020 - 2021
+    Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 */
 
 #include <iostream>
