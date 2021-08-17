@@ -1,24 +1,13 @@
 
-/*------------------------------------------------------------------------------
+/**
 FMath Library
 
-Copyright (c) 2020 - 2021
+Copyright (c) 2020 - 2021, Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+*/
 
-Author : Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
-
-Class
-    FMath::Vector3D
-
-Description
-    A 3D vector 
-------------------------------------------------------------------------------*/
-
-
-// C++ Headers
 #include <iostream>
 #include <cmath>
 #include <iomanip>
-
 
 namespace FMath
 {
@@ -64,23 +53,35 @@ class Vector3D
 
         Vector3D& operator /=(double val);
 
-        double& operator [](int i);
+        ///  Returns value at given index
+        ///  @param index : Index of vector
+        double& operator [](int index);
 
-        const double& operator [](int i) const;
+        ///  Returns value at given index
+        ///  @param index : Index of vector
+        const double& operator [](int index) const;
    
+        /// Set x, y, z components of the vector
         void SetComponents(double x, double y, double z);
 
+        /// Prints the vector to the screen
         virtual void Print();
 
+        /// Prints the vector to the screen
+        /// @param columnWidth : Width of print columns
         virtual void Print(int columnWidth);
 
+        /// Normalises the current vector
         void Normalise();
 
-        Vector3D& GetNormalisedVector();
+        /// Returns the normalised vector without normalizing the vector itself.
+        const Vector3D& GetNormalisedVector() const;
 
-        Vector3D& GetUnitVector();
+        /// Returns the unit vector without normalizing the vector itself.
+        const Vector3D& GetUnitVector() const;
 
-        double GetMagnitude();
+        /// Returns the magnitude of the vector
+        double GetMagnitude() const;
 
         double x, y, z;
 };

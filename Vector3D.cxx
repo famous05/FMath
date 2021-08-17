@@ -1,22 +1,12 @@
 
-/*------------------------------------------------------------------------------
-FMath Library
+/**
+    FMath Library
 
-Copyright (c) 2020 - 2021, 
+    Copyright (c) 2020 - 2021
+    Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+*/
 
-Author : Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
-
-Class
-    FMath::Vector3D
-
-Description
-    A 3D vector 
-------------------------------------------------------------------------------*/
-
-
-// Class header
 #include "Vector3D.hxx"
-
 
 namespace FMath
 {
@@ -153,6 +143,8 @@ double& Vector3D::operator [](int i)
 
         if (i == 2) return this->z;  
     }
+
+    return this->x;
 }
 
 const double& Vector3D::operator [](int i) const
@@ -170,6 +162,8 @@ const double& Vector3D::operator [](int i) const
 
         if (i == 2) return this->z;  
     }
+
+    return this->x;
 }
 
 void Vector3D::SetComponents(double x, double y, double z)
@@ -197,7 +191,7 @@ void Vector3D::Normalise()
     *this = *this / this->GetMagnitude();
 }
 
-Vector3D& Vector3D::GetNormalisedVector()
+const Vector3D& Vector3D::GetNormalisedVector() const
 {
    Vector3D *v = new FMath::Vector3D(*this);
    v->Normalise();
@@ -207,12 +201,12 @@ Vector3D& Vector3D::GetNormalisedVector()
    v = nullptr;
 }
 
-Vector3D& Vector3D::GetUnitVector()
+const Vector3D& Vector3D::GetUnitVector() const
 {
     return this->GetNormalisedVector();
 }
 
-double Vector3D::GetMagnitude()
+double Vector3D::GetMagnitude() const
 {
     return (sqrt(this->x * this->x + this->y * this->y + this->z * this->z));
 }

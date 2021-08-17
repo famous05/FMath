@@ -1,26 +1,15 @@
-/*------------------------------------------------------------------------------
-FMath Library
+/**
+    FMath Library
 
-Copyright (c) 2020 - 2021
-
-Author : Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
-
-Class
-    FMath::Matrix
-
-Description
-    A Matrix class
-------------------------------------------------------------------------------*/
-
+    Copyright (c) 2020 - 2021
+    Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
+*/
 
 #include <iostream>
 #include <iomanip>
 #include <memory>
 
-
-// Class header
 #include "Matrix.hxx"
-
 
 using Row = std::vector<double>;
 using Column = std::vector<double>;
@@ -28,9 +17,9 @@ using Column = std::vector<double>;
 namespace FMath
 {
 
-Matrix::Matrix()
+Matrix::Matrix() : FMath::Matrix(3, 3, 0.0)
 {
-    
+    // Alternatively prohibit calling this constructor
 }
 
 Matrix::Matrix(std::size_t nRows, std::size_t nCols) : FMath::Matrix(nRows, nCols, 0.0)
@@ -40,7 +29,10 @@ Matrix::Matrix(std::size_t nRows, std::size_t nCols) : FMath::Matrix(nRows, nCol
 
 Matrix::Matrix(std::size_t nRows, std::size_t nCols, double value)
 {
+    m_MatrixRows = new std::vector<Row>;
+
     Row row(nCols, value);
+
     for (std::size_t i = 0; i < nRows; i++)
     {
         m_MatrixRows->push_back(row);
@@ -49,15 +41,15 @@ Matrix::Matrix(std::size_t nRows, std::size_t nCols, double value)
 
 Matrix::Matrix(const Matrix& matrix)
 {
+    m_MatrixRows = new std::vector<Row>;
     *m_MatrixRows = *matrix.m_MatrixRows;
-    //std::cout <<"Copy constructor" << std::endl;
 }
 
 Matrix::Matrix(Matrix&& matrix)
 {
+    m_MatrixRows = new std::vector<Row>;
     m_MatrixRows = matrix.m_MatrixRows;
     matrix.m_MatrixRows = nullptr;
-    //std::cout <<"Move constructor" << std::endl;
 }
 
 Matrix& Matrix::operator =(const Matrix& matrix)
@@ -252,7 +244,7 @@ Row& Matrix::operator [](std::size_t row)
     return m_MatrixRows->at(row);
 }
 
-Row& Matrix::GetRow(std::size_t row)
+const Row& Matrix::GetRow(std::size_t row) const
 {
     if (row > this->GetRowCount() - 1)
     {
@@ -263,7 +255,7 @@ Row& Matrix::GetRow(std::size_t row)
     return m_MatrixRows->at(row);
 }
 
-Column& Matrix::GetColumn(std::size_t col)
+const Column& Matrix::GetColumn(std::size_t col) const
 {
     if (col > this->GetColumnCount() - 1)
     {
@@ -323,6 +315,16 @@ void Matrix::Transpose()
     {
        m_MatrixRows->push_back(row_);
     }
+}
+
+Matrix& Matrix::GetTranspose()
+{
+    Matrix *m = new Matrix(*this);
+    m->Transpose();
+    return *m;
+
+    delete m;
+    m = nullptr;
 }
 
 void Matrix::Print()
