@@ -13,23 +13,44 @@ int main()
     auto v3 = std::make_unique<Vector3D>(0.0, 1, -1);
     auto v4 = std::make_unique<Vector3D>(*v1);
 
+    std::cout << " " << std::endl;
+    std::cout << "Printing v1 " << std::endl;
     v1->Print();
+
+    std::cout << " " << std::endl;
+    std::cout << "Printing v2 " << std::endl;
     v2->Print();
+
+    std::cout << " " << std::endl;
+    std::cout << "Printing v3 " << std::endl;
     v3->Print();
+
+    std::cout << " " << std::endl;
+    std::cout << "Printing v4 " << std::endl;
     v4->Print();
 
     auto v5 = *v1 + *v2;
+
+    std::cout << " " << std::endl;
+    std::cout << "Printing v5 " << std::endl;
     v5.Print();
 
     auto v6 = *v1 - *v2;
+
+    std::cout << " " << std::endl;
+    std::cout << "Printing v6 " << std::endl;
     v6.Print();
 
     auto v7 = std::make_unique<Vector3D>();
 
+    std::cout << " " << std::endl;
+    std::cout << "Printing v7 " << std::endl;
     v7->Print();
 
     *v7 += v5;
 
+    std::cout << " " << std::endl;
+    std::cout << "Printing v7 again" << std::endl;
     v7->Print();
 
     *v7 /= 100;

@@ -294,6 +294,46 @@ std::vector<std::size_t> Matrix::GetShape()
     return shape;
 }
 
+void Matrix::Reshape(std::size_t nRows, std::size_t nCols)
+{
+    // Copy existing matrix data into a vector of doubles
+    std::vector<double> matrixData;
+    std::size_t newDataCount = nRows * nCols;
+    std::size_t counter = 0;
+
+    for(std::size_t r = 0; r < this->GetRowCount(); r++)
+    {
+        for(std::size_t c = 0; c < this->GetColumnCount(); c++)
+        {
+            if (counter < newDataCount)
+            {
+                matrixData.push_back((*this)[r][c]);
+            }
+            else
+            {
+                matrixData.push_back(0.0);
+            }
+            counter += 1;
+        }
+    }
+
+    this->ClearMatrixData();
+
+    Row row;
+    std::size_t index;
+    for(std::size_t r = 0; r < nRows; r++)
+    {
+        for(std::size_t c = 0; c < nCols; c++)
+        {
+           index = c + r * nRows;
+           row.push_back(matrixData.at(index)); 
+        }
+        this->m_MatrixRows->push_back(row);
+        row.clear();
+    }
+}
+
+
 void Matrix::Transpose()
 {
     std::vector<Row> newMatrixRows;
@@ -343,5 +383,29 @@ void Matrix::Print(int colWidth)
         std::cout << std::endl;
     }
 }
+
+void Matrix::ClearMatrixData()
+{
+    if (!(this->m_MatrixRows->empty())) this->m_MatrixRows->clear();
+}
+
+void Matrix::AppendRow(const std::vector<double>& row)
+{
+    if (m_MatrixRows->size() > 0)
+    {
+        if (m_MatrixRows->at(0).size() != row.size())
+        {
+            std::cout << "new row size does not match existing row size" << std::endl;
+            throw new std::runtime_error("new row size does not match existing row size");
+        }
+
+        m_MatrixRows->push_back(row);
+    }
+    else
+    {
+        m_MatrixRows->push_back(row);
+    }
+}
+
 
 } // End of namespace FMath

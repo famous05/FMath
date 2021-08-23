@@ -87,6 +87,10 @@ class Matrix
     /// Returns the shape of the matrix (x, y)
 	std::vector<std::size_t> GetShape();
 
+    /// Reshapes the matrix to nRows, nCols
+    /// Possible loss of data !!!
+    void Reshape(std::size_t nRows, std::size_t nCols);
+
     /// Transposes the matrix in situ
 	void Transpose();
 
@@ -99,6 +103,11 @@ class Matrix
     /// Prints the matrix to the screen
     /// @param columnWidth : Width of print columns
     void Print(int columnWidth);
+
+    /// Removes all rows and columns in the matrix
+    void ClearMatrixData();
+
+    void AppendRow(const std::vector<double>& row);
 
 protected:
     std::vector<Row> *m_MatrixRows = nullptr;	

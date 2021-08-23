@@ -5,12 +5,9 @@
     Osarobo Famous Okhuahesogie, famous.osarobo@gmail.com
 */
 
-// C++
 #include <iostream>
 #include <vector>
 
-
-// Developer
 #include "Vector3D.hxx"
 #include "Matrix.hxx"
 
