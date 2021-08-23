@@ -1,5 +1,5 @@
 ### BezierLite
-FMath is a Matrix and Vector library consisting of many vector and matrix operations in 3D CAD. More classes and operations are being added  
+FMath is a Matrix and Vector library consisting of many vector and matrix operations in 3D CAD. More classes and operations are being added. The F stands for Famous my middle name  
 
 ### License
 This code is available under the GNU General Public License v3. You should have received a copy of the GNU General Public License
