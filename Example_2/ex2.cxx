@@ -43,9 +43,8 @@ int main()
     {
         for (int c = 0; c < m3.GetRowCount(); c++)
         {
-            //std::cout << (*m1)[r][c] << std::endl;
             (*m1)[r][c] *= (c * r);
-            m3[r][c] /= c;
+            m3[r][c] /= c + 1;
             m2[r][c] *= (c + r);
         }
     }
@@ -85,11 +84,13 @@ int main()
     // This should throw error as shapes are different
     //m3 += m2t;
 
-
-    // Crashes in reshape. Fix in progress.
-    m3.Reshape(15, 15);
     std::cout << " " << std::endl;
-    std::cout << "Reprinting m3 after Reshape(15, 15)" << std::endl;
+    std::cout << "Printing m3" << std::endl;
+    m3.Print();
+
+    m3.Reshape(3, 3);
+    std::cout << " " << std::endl;
+    std::cout << "Reprinting m3 after Reshape(3, 3)" << std::endl;
     m3.Print();
 
     delete m1;

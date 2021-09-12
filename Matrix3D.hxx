@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cassert>
 
 #include "Vector3D.hxx"
 #include "Matrix.hxx"
@@ -29,7 +30,7 @@ class Matrix3D : public FMath::Matrix
 
 	/// Parameter constructor
 	/// @param value : Value of all index locations in the matrix
-	Matrix3D(double value);
+	Matrix3D(const double value);
 
 	/// Parameter constructor
 	/// @param row1 : Row 1 Vector3D object
@@ -48,11 +49,11 @@ class Matrix3D : public FMath::Matrix
 
 	/// Returns a Vector3D object row  at 'row' index in the matrix
 	/// @param row : Row index to return vector from
-	const Vector3D& GetRow(int row) const;
+	const Vector3D& GetRow(const int row) const;
 
 	/// Returns a Vector3D object column at 'col' index in the matrix
 	/// @param col : Column index to return vector from
-    const Vector3D& GetColumn(int col) const;
+    const Vector3D& GetColumn(const int col) const;
 };
 #endif
 

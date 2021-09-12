@@ -28,13 +28,13 @@ class Matrix
     /// Parameter constructor
     /// @param nRows : Number of rows
     /// @param nColumns: Number of columns
-	Matrix(std::size_t nRows, std::size_t nColumns);
+	Matrix(const std::size_t nRows, const std::size_t nColumns);
 
     /// Parameter constructor
     /// @param nRows : Number of rows
     /// @param nColumns: Number of columns
     /// @param value : Initial values in matrix
-	Matrix(std::size_t nRows, std::size_t nColumns, double value);
+	Matrix(const std::size_t nRows, const std::size_t nColumns, const double value);
 
     /// Copy constructor
     /// @param matrix : Matrix to be copied into new Matrix object
@@ -68,15 +68,15 @@ class Matrix
 
     /// Returns the row at row index 'row'
     /// @param row : Index of row to return
-    Row& operator [](std::size_t row);
+    Row& operator [](const std::size_t row);
 
     /// Returns the row at row index 'row'
     /// @param row : Index of row to return
-    const Row& GetRow(std::size_t row) const;
+    const Row& GetRow(const std::size_t row) const;
 
     /// Returns the column at column index 'column'
     /// @param column : Index of column to return
-    const Column& GetColumn(std::size_t column) const;
+    const Column& GetColumn(const std::size_t column) const;
 
     /// Returns number of rows in the matrix
 	std::size_t GetRowCount() const;
@@ -89,7 +89,7 @@ class Matrix
 
     /// Reshapes the matrix to nRows, nCols
     /// Possible loss of data !!!
-    void Reshape(std::size_t nRows, std::size_t nCols);
+    void Reshape(const std::size_t nRows, const std::size_t nCols);
 
     /// Transposes the matrix in situ
 	void Transpose();
@@ -97,12 +97,15 @@ class Matrix
     /// Returns the transpose without transposing it in situ
 	Matrix& GetTranspose();
 
+    /// Returns the transpose without transposing it in situ
+	Matrix& T();
+
     /// Prints the matrix to screen
     void Print();
 
     /// Prints the matrix to the screen
     /// @param columnWidth : Width of print columns
-    void Print(int columnWidth);
+    void Print(const int columnWidth);
 
     /// Removes all rows and columns in the matrix
     void ClearMatrixData();

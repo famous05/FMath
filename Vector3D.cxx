@@ -16,18 +16,31 @@ Vector3D::Vector3D() : FMath::Vector3D(0, 0, 0)
     // This constructor calls another constructor
 }
 
-Vector3D::Vector3D(double x, double y, double z)
+Vector3D::Vector3D(const double x, const double y, const double z)
 {
     this->x = x;
     this->y = y;
     this->z = z;
 }
 
-Vector3D::Vector3D(const Vector3D& v)
+Vector3D::Vector3D(const std::vector<double> values)
 {
-    this->x = v.x;
-    this->y = v.y;
-    this->z = v.z;
+    if (values.size() != 3)
+    {
+        std::cout << "invalid size of vector to initialize Vector3D class" << std::endl;
+        throw new std::runtime_error("invalid size of vector to initialize Vector3D class");
+        FMath::Vector3D(0, 0, 0);
+    }
+
+    this->x = values[0];
+    this->y = values[1];
+    this->z = values[2];
+
+}
+
+Vector3D::Vector3D(const Vector3D& v) : FMath::Vector3D(v.x, v.y, v.z)
+{
+
 }
 
 Vector3D& Vector3D::operator =(const Vector3D& v)
@@ -128,7 +141,7 @@ Vector3D& Vector3D::operator /=(double val)
     return *this;
 }
 
-double& Vector3D::operator [](int i)
+double& Vector3D::operator [](const int i)
 {
     if ((i > 2) || (i < 0))
     {
@@ -147,7 +160,7 @@ double& Vector3D::operator [](int i)
     return this->x;
 }
 
-const double& Vector3D::operator [](int i) const
+const double& Vector3D::operator [](const int i) const
 {
     if ((i > 2) || (i < 0))
     {
@@ -166,7 +179,7 @@ const double& Vector3D::operator [](int i) const
     return this->x;
 }
 
-void Vector3D::SetComponents(double x, double y, double z)
+void Vector3D::SetComponents(const double x, const double y, const double z)
 {
     this->x = x;
     this->y = y;
@@ -178,7 +191,7 @@ void Vector3D::Print()
     Print(10);
 }
 
-void Vector3D::Print(int colWidth)
+void Vector3D::Print(const int colWidth)
 {
     std::cout << std::left << std::setw(colWidth) << this->x;
     std::cout << std::left << std::setw(colWidth) << this->y;
@@ -191,7 +204,7 @@ void Vector3D::Normalise()
     *this = *this / this->GetMagnitude();
 }
 
-const Vector3D& Vector3D::GetNormalisedVector() const
+Vector3D& Vector3D::GetNormalisedVector()
 {
    Vector3D *v = new FMath::Vector3D(*this);
    v->Normalise();
@@ -201,14 +214,24 @@ const Vector3D& Vector3D::GetNormalisedVector() const
    v = nullptr;
 }
 
-const Vector3D& Vector3D::GetUnitVector() const
+Vector3D& Vector3D::GetUnitVector()
 {
     return this->GetNormalisedVector();
 }
 
-double Vector3D::GetMagnitude() const
+Vector3D& Vector3D::U()
+{
+    return this->GetNormalisedVector();
+}
+
+double Vector3D::GetMagnitude()
 {
     return (sqrt(this->x * this->x + this->y * this->y + this->z * this->z));
+}
+
+double Vector3D::Mag()
+{
+    return this->GetMagnitude();
 }
 
 } // End of namespace FMath

@@ -10,6 +10,7 @@
 #include <cmath>
 #include <iomanip>
 #include <memory>
+#include <vector>
 
 namespace FMath
 {
@@ -26,7 +27,11 @@ class Vector3D
 
         /// Parameter constructor
         /// @param double x, y, z. X, Y & Z components of vector
-        Vector3D(double x, double y, double z);
+        Vector3D(const double x, const double y, const double z);
+
+        /// Parameter constructor
+        /// @param std::vector<double> values. Vector array of  X, Y & Z components of vector
+        Vector3D(const std::vector<double> values);
 
         /// Copy constructor
         /// @param vector. Vector3D object to be copied
@@ -57,33 +62,39 @@ class Vector3D
 
         ///  Returns value at given index
         ///  @param index : Index of vector
-        double& operator [](int index);
+        double& operator [](const int index);
 
         ///  Returns value at given index
         ///  @param index : Index of vector
-        const double& operator [](int index) const;
+        const double& operator [](const int index) const;
    
         /// Set x, y, z components of the vector
-        void SetComponents(double x, double y, double z);
+        void SetComponents(const double x, const double y, const double z);
 
         /// Prints the vector to the screen
         virtual void Print();
 
         /// Prints the vector to the screen
         /// @param columnWidth : Width of print columns
-        virtual void Print(int columnWidth);
+        virtual void Print(const int columnWidth);
 
         /// Normalises the current vector
         void Normalise();
 
         /// Returns the normalised vector without normalizing the vector itself.
-        const Vector3D& GetNormalisedVector() const;
+        Vector3D& GetNormalisedVector();
 
         /// Returns the unit vector without normalizing the vector itself.
-        const Vector3D& GetUnitVector() const;
+        Vector3D& GetUnitVector();
+
+        /// Returns the unit vector without normalizing the vector itself.
+        Vector3D& U();
 
         /// Returns the magnitude of the vector
-        double GetMagnitude() const;
+        double GetMagnitude();
+        
+        /// Returns the magnitude of the vector
+        double Mag();
 
         double x, y, z;
 };

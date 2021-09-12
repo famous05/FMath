@@ -72,6 +72,15 @@ int main()
 	row_m4.Print(); 
 	// row_m5 does not have the Print() function
 
+	std::cout << " " << std::endl;
+    std::cout << "Printing m4 row 1 after modification" << std::endl;
+	row_m4[1] = -123.0;
+	row_m4.Print(); 
+
+	std::cout << " " << std::endl;
+    std::cout << "Printing m4 after modification via row_m4" << std::endl;
+	m4->Print();
+
 	auto row2_m4 = (*m4)[2];
 
 	std::cout << " " << std::endl;

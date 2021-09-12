@@ -22,12 +22,12 @@ Matrix::Matrix() : FMath::Matrix(3, 3, 0.0)
     // Alternatively prohibit calling this constructor
 }
 
-Matrix::Matrix(std::size_t nRows, std::size_t nCols) : FMath::Matrix(nRows, nCols, 0.0)
+Matrix::Matrix(const std::size_t nRows, const std::size_t nCols) : FMath::Matrix(nRows, nCols, 0.0)
 {
     // This constructor calls another constructor
 }
 
-Matrix::Matrix(std::size_t nRows, std::size_t nCols, double value)
+Matrix::Matrix(const std::size_t nRows, const std::size_t nCols, const double value)
 {
     m_MatrixRows = new std::vector<Row>;
 
@@ -294,30 +294,29 @@ std::vector<std::size_t> Matrix::GetShape()
     return shape;
 }
 
-void Matrix::Reshape(std::size_t nRows, std::size_t nCols)
+void Matrix::Reshape(const std::size_t nRows, const std::size_t nCols)
 {
     // Copy existing matrix data into a vector of doubles
     std::vector<double> matrixData;
     std::size_t newDataCount = nRows * nCols;
-    std::size_t counter = 0;
-
+    std::size_t oldDataCount = this->GetRowCount() * this->GetColumnCount();
+    
     for(std::size_t r = 0; r < this->GetRowCount(); r++)
     {
         for(std::size_t c = 0; c < this->GetColumnCount(); c++)
         {
-            if (counter < newDataCount)
-            {
-                matrixData.push_back((*this)[r][c]);
-            }
-            else
-            {
-                matrixData.push_back(0.0);
-            }
-            counter += 1;
+            matrixData.push_back((*this)[r][c]);
         }
     }
-
     this->ClearMatrixData();
+
+    if (newDataCount > oldDataCount)
+    {
+        for (int i = 0; i < (newDataCount - oldDataCount); i++)
+        {
+            matrixData.push_back(0.0); // Pad matrix data with zeros
+        }
+    }
 
     Row row;
     std::size_t index;
@@ -331,8 +330,9 @@ void Matrix::Reshape(std::size_t nRows, std::size_t nCols)
         this->m_MatrixRows->push_back(row);
         row.clear();
     }
-}
 
+    matrixData.clear();
+}
 
 void Matrix::Transpose()
 {
@@ -357,6 +357,11 @@ void Matrix::Transpose()
     }
 }
 
+Matrix& Matrix::T()
+{
+    return this->GetTranspose();
+}
+
 Matrix& Matrix::GetTranspose()
 {
     Matrix *m = new Matrix(*this);
@@ -372,7 +377,7 @@ void Matrix::Print()
     this->Print(10);
 }
 
-void Matrix::Print(int colWidth)
+void Matrix::Print(const int colWidth)
 {
     for (std::size_t i = 0; i < this->GetRowCount(); i++)
     {
@@ -406,6 +411,5 @@ void Matrix::AppendRow(const std::vector<double>& row)
         m_MatrixRows->push_back(row);
     }
 }
-
 
 } // End of namespace FMath

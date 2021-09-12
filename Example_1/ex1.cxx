@@ -8,8 +8,9 @@ using Vector3D = FMath::Vector3D;
 
 int main()
 {
+    std::vector<double> vals = {0.0, -1.0, 0.0};
     auto v1 = std::make_unique<Vector3D>(1.5, 2, 2);
-    auto v2 = std::make_unique<Vector3D>(0, -1, 0);
+    auto v2 = std::make_unique<Vector3D>(vals);
     auto v3 = std::make_unique<Vector3D>(0.0, 1, -1);
     auto v4 = std::make_unique<Vector3D>(*v1);
 
@@ -62,11 +63,11 @@ int main()
     *v7 *= 10;
     v7->Print();
 
-    std::cout << "Magnitude of v7 = " << v7->GetMagnitude() << std::endl;
+    std::cout << "Magnitude of v7 = " << v7->Mag() << std::endl;
 
     v7->Normalise();
 
-    std::cout << "Magnitude of v7 = " << v7->GetMagnitude() << std::endl;
+    std::cout << "Magnitude of v7 = " << v7->Mag() << std::endl;
 
     Vector3D V1(1, 2, 3);
     Vector3D V2(3, -4, 2);
@@ -88,5 +89,8 @@ int main()
     V4 = V4/a;
     V4.Print();
 
-	return 0;
+    std::cout << "Printing unit vector of V4 " <<std::endl;
+    V4.U().Print();
+    
+    return 0;
 };
